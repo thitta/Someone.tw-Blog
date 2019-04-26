@@ -1,0 +1,19 @@
+{% if messages %}
+{% for message in messages %}
+<div id="fixedMessage" role="alert" class="alert w-100 p-2
+                {% if message.tags == 'error' %}
+                    alert-danger
+                {% elif message.tags == 'success' %}
+                    alert-success alert-dismissible
+                {% else %}
+                    alert-warning
+                {% endif %}
+                ">
+    {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times</span>
+            </button>
+    <script>$('.alert-dismissible').delay(750).fadeOut(1500);</script>
+</div>
+{% endfor %}
+{% endif %}

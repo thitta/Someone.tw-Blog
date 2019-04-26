@@ -1,0 +1,17 @@
+<div class="fontSizeL color-50 fFamilyMer fSize-11 px-3 pt-3 mb-2">Topic Collections</div>
+
+{% for item in collections  %}
+<div class="px-4 py-2 color-40  fSize-10
+            {% if collection.DisplayName == item.DisplayName %}activeBlock{%endif%}
+            ">
+    <a href="{{item.DetailUrl}}" class="cleanA"><span>- {{item.DisplayName}}</span></a>
+</div>
+
+{%empty%}
+<div class="px-4 py-2 color-40  fSize-10">
+    - There is no collection now.
+</div>
+
+{% endfor %}
+
+<div class="space mb-4"></div>

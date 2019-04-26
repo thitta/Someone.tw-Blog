@@ -1,0 +1,95 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Someone.tw</title>
+    <link rel="shortcut icon" href="{% static 'cms/img/favicon.ico' %}">
+    <!-- Google Fonts  -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Inconsolata|Material+Icons" rel="stylesheet">
+    <!-- end -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+ integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- end -->
+    <!-- site CSS -->
+    <link rel="stylesheet" href="{% static 'cms/css/util.css' %}">
+    <link rel="stylesheet" href="{% static 'cms/css/post.css' %}">
+    <link rel="stylesheet" href="{% static 'cms/css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'cms/css/layout.css' %}">
+    <!-- end -->
+    <!-- highlightjs.org -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- end -->
+    <!-- plugins -->
+    {% include 'cms/plugin_fb_base.html'%}
+    {% include 'cms/plugin_gg_tagmanager_head.html'%}
+    <!-- end -->
+    {% block header %}{% endblock %}
+</head>
+
+<body>
+    {% include 'cms/plugin_gg_tagmanager_body.html'%}
+
+<div id="container">
+
+    <header class="text-center">
+        <div class="fSizeHeader color-10 fFamilyMer mt-5 mb-1 ">
+            <a class="cleanA titleA" href="{%url 'cms_post_list_url' %}">{{site_title}}</a>
+        </div>
+        <div class="fSizeSubHeader color-40 pb-2 mb-4">{{site_subtitle}}</div>
+    </header>
+
+    <section class="bg-92">
+        <div>
+            {% include 'cms/block_nav.html'%}
+            <div class="space py-3"></div>
+        </div>
+        <section id="mainContainer" class="" >
+            <!-- left -->
+            <div id="left">
+                <div class="">{% block content %}{% endblock %}</div>
+            </div>
+            <!-- right -->
+            <div id="right" class="">
+                <div class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_search.html' %}</div>
+                <div class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_collection.html' %}</div>
+            </div>
+        </section>
+    </section>
+
+    <footer class="bg-88 color-50 p-4 text-center fSize-09">
+        <div id="footerTextLink" class="mb-2">
+            <a class="cleanA" href="{% url 'cms_post_detail_url' 1 'about' %}">About</a><span> | </span>
+            <a class="cleanA" href="{% url 'cms_post_detail_url' 2 'copyright' %}">Copyright</a><span> | </span>
+            <a class="cleanA" href="{% url 'cms_post_detail_url' 3 'term-of-use' %}">Term of Use</a><span> | </span>
+            <!-- login/logout -->
+            {% if user.is_authenticated %}
+            <a class="cleanA" href="{% url 'cms_post_admin_url' %}">Post Admin</a><span> | </span>
+            <form id="logoutForm" class="d-inline" method="post" action="{% url 'logout_url' %}">
+                {% csrf_token %}
+                <a class="cleanA" onclick="document.getElementById('logoutForm').submit()">Logout</a><span></span>
+            </form>
+            {% else %}
+            <a class="cleanA" data-toggle="modal" data-target="#loginModal">Login</a><span></span>
+            {% endif %}
+            <!-- end -->
+        </div>
+        <div>Developed by Shawn Lee for IS-490 IS-590 class presentation.</div>
+    </footer>
+
+</div>
+
+{% include 'cms/block_fixedMessage.html' %}
+{% include 'cms/block_login_modal.html' %}
+
+</body>
+
+</html>

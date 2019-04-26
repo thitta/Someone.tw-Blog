@@ -1,0 +1,37 @@
+{% if is_paginated %}
+<div class="container fFamilyMer mb-5">
+    <div class="row">
+
+        <div class="space col"></div>
+
+        <div class="col-1 text-right pageBtn color-30 p-0">
+            <a class="cleanA" href="
+                {% if page_obj.has_previous %}
+                    {{pagination_base_url}}?page={{page_obj.previous_page_number}}
+                {% endif %}
+            ">
+                <div><i class="material-icons vAlignTop fSize-12">navigate_before</i></div>
+            </a>
+        </div>
+
+        <div class="col-3 text-center siteBg pageInfo color-40 p-0">
+            Page {{page_obj.number}}/{{paginator.num_pages}}
+        </div>
+
+        <div class="col-1 text-left pageBtn color-30  p-0">
+            <a class="cleanA" href="
+                {% if page_obj.has_next %}
+                    {{pagination_base_url}}?page={{page_obj.next_page_number}}
+                {% endif %}
+            ">
+                <div><i class="material-icons vAlignTop fSize-12">navigate_next</i></div>
+            </a>
+        </div>
+
+        <div class="space col"></div>
+
+    </div>
+</div>
+{% else %}
+<div class="space p-4"></div>
+{% endif %}

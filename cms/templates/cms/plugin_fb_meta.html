@@ -1,0 +1,9 @@
+{% if plugins.fb_social.fb_comment.on %}
+
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{post.AbsoluteUrl}}" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{post.Title}}" />
+<meta property="og:description" content="{{post.Abstract|striptags}}" />
+<meta property="og:image" content="{{post.CoverImageUrl}}" />
+
+{% endif %}

@@ -1,0 +1,16 @@
+*.pyc
+*~
+*.sqlite3
+*.gcloudignore
+
+__pycache__
+.DS_Storev
+.idea
+production
+instance
+
+/static
+/app.yaml
+/main.py
+/someone_blog/settings.py
+/someone_blog/test_settings.py

@@ -1,0 +1,16 @@
+{% extends 'cms/base_main.html' %}
+
+{%block textNav %}Home > Create Post{% endblock %}
+
+{% block content %}
+
+<div class="mb-4 fSize-20 fFamilyMer">Create Post</div>
+
+<form id="postForm" action="{% url 'cms_post_create_url' %}" method="post" novalidate >
+    {% csrf_token %}
+    {% include 'cms/block_post_form.html' %}
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Create Post</button>
+</form>
+
+<div class="py-4"></div>
+{% endblock %}

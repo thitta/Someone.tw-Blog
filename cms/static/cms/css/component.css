@@ -1,0 +1,53 @@
+.readmoreA {
+    color: #418fd9;
+}
+
+.readmoreA:hover {
+    color: #3678b3;
+    text-decoration: underline;
+}
+
+.titleA:hover {
+    color: #000080;
+    text-decoration: underline;
+}
+
+.collectionTag {
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 0.9em;
+    padding: 0.2em 0.5em;
+    margin-right: 0.2em;
+    background-color: #e3ecf3;
+    border: 1px #dce9f2 solid;
+}
+
+#searchBtn:hover{
+    cursor: pointer;
+    background-color: #e6e6e6;
+}
+
+.activeBlock{
+    background-color: #f0f4f7;
+    border-left: #73ace6 4px solid;
+    color: black;
+}
+
+.activeBlock span{
+    margin-left: -4px;
+}
+
+.pageBtn{
+    border-bottom: 1px #cccccc solid;
+    font-size: 1.5em;
+    line-height: 0;
+}
+
+.pageBtn:hover{
+    border-bottom: 1px #999999 solid;
+}
+
+.pageInfo{
+    line-height: 1.5em;
+}
+

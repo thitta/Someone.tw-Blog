@@ -1,0 +1,26 @@
+{% extends 'cms/base_main.html' %}
+
+{% block content %}
+<div>
+    <div class="mb-4 fSize-20 fFamilyMer d-inline-block">Update Post</div>
+    <div id="deleteLink" class="d-inline-block color-80 mb-2 float-right mt-2">
+         <button type="button" class="btn btn-sm btn-outline-secondary"
+                 data-toggle="modal" data-target="#deleteConfirmModal">
+            <i class="material-icons fSize-13 vAlignTop">delete</i> <span class="fSize-12">Delete</span>
+         </button>
+    </div>
+</div>
+
+<form id="postForm" action="{{ post.UpdateUrl }}" method="post" novalidate>
+    {% csrf_token %}
+    {% include 'cms/block_post_form.html' %}
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Update Post</button>
+</form>
+
+<div class="py-4"></div>
+
+
+
+{% include 'cms/block_delete_confirm_modal.html' %}
+
+{% endblock %}

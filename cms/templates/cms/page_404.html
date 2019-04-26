@@ -1,0 +1,13 @@
+{% extends 'cms/base_main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="bg-100 text-center p-5 mb-5">
+    <p class="fFamilyMer color-30 fSize-12">404 Error-Page not Found</p>
+    <p class="fFamilyMer color-50 fSize-09">The page might be removed or temporarily hidden.</p>
+    <p class="fFamilyMer color-50 fSize-09">Maybe try again later?</p>
+    <img src="{% static 'cms/img/error.jpeg'%}" style="width: 300px" />
+    <div class="space p-3"></div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+#postBox p:not(:last-child) {
+    line-height: 1.5;
+    margin-bottom: 0.6em
+}
+
+#postBox h1 {
+    font-size: 1.1em;
+    margin: 2.5em 0em 1em -0.2em;
+    padding: 0.4em 0.6em;
+    background-color: #f0f4f7;
+    border-left: #73ace6 4px solid;
+    font-weight: inherit;
+}
+
+#postBox h2, h3, h4, h5, h6 {
+    margin: 1.5em 0 0.6em 0;
+    font-size: 1em;
+    color: #000080;
+}
+
+#postBox img {
+    width: 100%;
+}
+
+#relatedPostBox .title {
+    font-size: 1.2em;
+    margin: 1.5em 0 0.6em 0;
+}
+
+#relatedPostBox ul {
+    -webkit-padding-start: 1.5em;
+}
+
+#postBox a {
+    color: #8c8c8c;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#postBox a:hover {
+    color: inherit;
+}
+
+#postBox a:visited {
+    color: inherit;
+}
+
+#postBox table {
+    width: 100%;
+    margin-bottom: 1em
+}
+
+#postBox table tr {
+
+}
+
+#postBox table th {
+    background-color: #f2f2f2;
+    border: 1px #cccccc solid;
+    padding: 0.3em 0.7em;
+}
+
+#postBox table td, th {
+    border: 1px #cccccc solid;
+    padding: 0.3em 0.7em;
+}
+
+#postBox blockquote {
+    padding: 0 1em;
+    color: #808080;
+    border-left: 0.25em solid #e6e6e6;
+    margin: 0 0 0.6em 0;
+    display: block;
+}
+
+code{
+    padding: 0.2em 0.3em;
+    background-color: #f2f2f2;
+}
+
+pre code{
+    background-color: inherit;
+    color: black;
+}

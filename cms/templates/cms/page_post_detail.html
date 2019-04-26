@@ -1,0 +1,48 @@
+{% extends 'cms/base_main.html' %}
+
+{% block header %}
+    {% include 'cms/plugin_fb_meta.html' %}
+{% endblock %}
+
+{% block content %}
+
+<article class="bg-100">
+    {% include 'cms/block_post_header.html' %}
+    <div class="p-3"></div>
+    <div id="postBox" class="px-4 pt-3 pb-4">{{post.BodyHTML|safe}}</div>
+    {% include 'cms/plugin_fb_like.html' %}
+</article>
+
+{% if post.collection_set.all %}
+<div class="p-4 border-top  bg-100">
+    <div class="mb-3 fSize-12">Collection</div>
+    {% for collection in post.collection_set.all %}
+        <span class="collectionTag">
+            <a class="readmoreA" href="{{collection.DetailUrl}}">
+                {{collection.DisplayName}}
+            </a>
+        </span>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if post.RelatedPosts %}
+<div class="p-4 border-top bg-100">
+    <div class="mb-3 fSize-12">Related Posts</div>
+    <ul>
+        {% for post in post.RelatedPosts %}
+            <li><a href="{{post.DetailUrl}}" class="noUnderline readmoreA">
+                {{post.Title}}
+            </a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<div id="fb_plugin bg-100">
+    {% include 'cms/plugin_fb_comment.html' %}
+</div>
+
+<div class="mb-5"></div>
+
+{% endblock %}

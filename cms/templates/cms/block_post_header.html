@@ -1,0 +1,22 @@
+<h4 class="px-4 pt-4 pb-2 color-40 fFamilyMer fSize-12 m-0">
+    <a class="cleanA titleA" href="{{ post.DetailUrl }}">{{post.Title}}</a>
+</h4>
+
+<div class="px-4 color-50 align-middle">
+    <i class="material-icons fSize-13 vAlignTop">subtitles</i> {{post.Subtitle}}
+    <span class="p-2"></span>
+    <i class="material-icons fSize-13 vAlignTop">access_time</i> {{post.CreateDate|date:'Y-m-d'}}
+    {% if not post.IsPublic %}
+    <span class="p-2"></span>
+    <i class="material-icons fSize-13 vAlignTop">close</i> Non-Public
+    {% endif %}
+
+    {% if user.is_authenticated and post.User.username == user.username %}
+    <div id="editLink" class="d-block float-right color-80">
+        <a href="{{post.UpdateUrl}}" class="cleanA">
+            <i class="material-icons fSize-11 ">edit</i>Edit
+        </a>
+    </div>
+    {% endif %}
+</div>
+

@@ -1,0 +1,17 @@
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header pd-0">Delete Confirm</div>
+      <div class="modal-body">
+        Are you sure you want to delete post <u class="font-weight-bold">{{post.Title}}</u>?
+      </div>
+      <div class="modal-footer">
+        <form action="{{ post.DeleteUrl }}" method="post" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-light btn-sm btn-block">Delete</button>
+        </form>
+        <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

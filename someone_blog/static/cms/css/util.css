@@ -1,0 +1,207 @@
+.noBullet {
+    list-style-type: none;
+}
+
+.fontSizeL {
+    font-size: 1.4em;
+}
+
+.fSize-08 {
+    font-size: 0.8em;
+}
+
+.fSize-09 {
+    font-size: 0.9em;
+}
+
+.fSize-10 {
+    font-size: 1.0em;
+}
+
+.fSize-11 {
+    font-size: 1.1em;
+}
+
+.fSize-12 {
+    font-size: 1.2em;
+}
+
+.fSize-20 {
+    font-size: 2.0em;
+}
+
+.fSizeM {
+    font-size: 0.9em;
+}
+
+.fSizeS {
+    font-size: 0.8em;
+}
+
+.fSizeSX {
+    font-size: 0.6em;
+}
+
+.fSizeHeader {
+    font-size: 2.2em;
+}
+
+.fSizeSubHeader {
+    font-size: 1.3em;
+}
+
+.fFamilyMer {
+    font-family: 'Merriweather', serif
+}
+
+.color-0 {
+    color: #000000;
+}
+
+.color-10 {
+    color: #1a1a1a;
+}
+
+.color-20 {
+    color: #080808;
+}
+
+.color-30 {
+    color: #4d4d4d;
+}
+
+.color-40 {
+    color: #666666;
+}
+
+.color-50 {
+    color: #808080;
+}
+
+.color-60 {
+    color: #999999;
+}
+
+.color-70 {
+    color: #b3b3b3;
+}
+
+.color-80 {
+    color: #cccccc;
+}
+
+.color-90 {
+    color: #e6e6e6;
+}
+
+.color-100 {
+    color: #ffffff;
+}
+
+.color-warning {
+    color: #bf4c4e;
+}
+
+.bg-0 {
+    background-color: #000000;
+}
+
+.bg-10 {
+    background-color: #1a1a1a;
+}
+
+.bg-20 {
+    background-color: #4d4d4d;
+}
+
+.bg-30 {
+    background-color: #4d4d4d;
+}
+
+.bg-40 {
+    background-color: #666666;
+}
+
+.bg-50 {
+    background-color: #808080;
+}
+
+.bg-60 {
+    background-color: #999999;
+}
+
+.bg-70 {
+    background-color: #b3b3b3;
+}
+
+.bg-80 {
+    background-color: #cccccc;
+}
+
+.bg-88 {
+    background-color: #e0e0e0;
+}
+
+
+.bg-90 {
+    background-color: #e6e6e6;
+}
+
+.bg-92 {
+    background-color: #ebebeb;
+}
+
+.bg-100 {
+    background-color: #ffffff;
+}
+
+.cleanA {
+    color: inherit;
+}
+
+.cleanA:hover {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: inherit;
+}
+
+.cleanA:visited {
+    color: inherit;
+}
+
+.size-200x263 {
+    width: 200px;
+    height: 263px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #cccccc;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cccccc;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #cccccc;
+}
+
+.btn-primary {
+    background-color: #4595e6;
+    border: 1px #4595e6 solid;
+}
+
+.btn-primary:hover {
+    background-color: #397fbf;
+    border: 1px #397fbf solid;
+}
+
+.noUnderline {
+    text-decoration: none;
+!important
+}
+
+.vAlignTop{
+    vertical-align: top;
+}

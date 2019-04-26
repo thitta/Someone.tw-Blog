@@ -1,0 +1,15 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header pd-0">Author Login</div>
+        <div class="modal-body">
+            <form action="{% url 'login_url' %}?next={{request.path}}" method="post" >
+                {% csrf_token %}
+                <div class="form-row mb-3">{{login_form.username}}</div>
+                <div class="form-row mb-3">{{login_form.password}}</div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block p-0">Login</button>
+            </form>
+        </div>
+    </div>
+  </div>
+</div>
