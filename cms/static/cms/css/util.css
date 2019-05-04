@@ -50,12 +50,12 @@
     font-size: 1.3em;
 }
 
-.fFamilyMer {
-    font-family: 'Merriweather', serif
+.fontSerif {
+    font-family: 'Merriweather', Serif;
 }
 
-.fFamilyMono{
-    font-family: 'Inconsolata', monospace;
+.fontMono{
+    font-family: 'Inconsolata', Monospace;
 }
 
 .color-0 {

@@ -1,5 +1,6 @@
 body {
     background-image: url('/static/cms/img/bg.png');
+    font-family: Sans-serif	;
 }
 
 footer {
@@ -122,5 +123,5 @@ code {
 }
 
 #postForm input, textarea{
-    font-family: Inconsolata;
+    font-family: Inconsolata, monospace;
 }

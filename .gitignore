@@ -2,6 +2,7 @@
 *~
 *.sqlite3
 *.gcloudignore
+*production*
 
 __pycache__
 .DS_Storev
@@ -12,5 +13,10 @@ instance
 /static
 /app.yaml
 /main.py
-/someone_blog/settings.py
-/someone_blog/test_settings.py
+
+# settings-related ignore
+/someone_blog/settings_instance/*
+!/someone_blog/settings_instance/sample_database.py
+!/someone_blog/settings_instance/sample_site_config.py
+/someone_blog/*settings*.py
+!/someone_blog/settings_sample.py

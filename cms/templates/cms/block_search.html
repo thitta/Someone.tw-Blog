@@ -1,7 +1,7 @@
 <div class="p-3
             {% if request.GET.term %}activeBlock{% endif %}
             ">
-    <div class="fontSizeL color-50 fFamilyMer fSize-11 mb-2">Full-text Search</div>
+    <div class="fontSizeL color-50 fontSerif fSize-11 mb-2">Full-text Search</div>
     <form id="searchForm" class="mb-2" method="get" action = "{% url 'cms_search_redirect_url'%} ">
         <div class="input-group">
             <input name="term" type="text" class="form-control" value="{{request.GET.term}}">

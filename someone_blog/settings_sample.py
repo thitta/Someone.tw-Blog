@@ -1,14 +1,16 @@
 import os
 from django.urls import reverse_lazy
+from .settings_instance.sample_database import DATABASES, CONN_MAX_AGE
+from .settings_instance.sample_site_config import SITE_TITLE, SITE_SUBTITLE, NAV_BUTTONS, PLUGINS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '[Your SECRET KEY]'
+SECRET_KEY = 'j1MZbtvNp7V1wVLMyfUqNf4qT3jtDbWT'
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -55,15 +57,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'someone_blog.wsgi.application'
 
-# Database
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -85,9 +78,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
+# en-us, ah-hant
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# 'America/Chicago', Asia/Taipei
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -104,49 +99,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 LOGIN_REDIRECT_URL = "cms_post_list_url"
 LOGOUT_REDIRECT_URL = "cms_post_list_url"
 LOGIN_URL = reverse_lazy("cms_post_list_url")
-
-# Site configs
-
-SITE_TITLE = "Someone.tw (DEMO)"
-
-SITE_SUBTITLE = "For Lightweight & Productive Blogging"
-
-NAV_BUTTONS = [
-    {
-        "text": "Home",
-        "url": "/",
-        "target": "_self",
-    },
-    {
-        "text": "About",
-        "url": "/post/1/about",
-        "target": "_self",
-    },
-    {
-        "text": "Copyright",
-        "url": "/post/2/copyright",
-        "target": "_self",
-    }
-]
-
-PLUGINS = {
-    "fb_base": {
-        "on": True,
-        "app_id": "[your app_id]",
-    },
-    "fb_social": {
-        "fb_comment": {
-            "on": True
-        },
-        "fb_meta": {
-            "on": True
-        },
-        "fb_like": {
-            "on": True
-        },
-    },
-    "gg_tagmanager": {
-        "on": True,
-        "app_id": "[your app_id]",
-    }
-}
