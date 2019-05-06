@@ -5,10 +5,11 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Someone.tw</title>
     <link rel="shortcut icon" href="{% static 'cms/img/favicon.ico' %}">
     <!-- Google Fonts  -->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather|Inconsolata|Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Material+Icons" rel="stylesheet">
     <!-- end -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -41,7 +42,7 @@
 <div id="container">
 
     <header class="text-center">
-        <div class="fSizeHeader color-10 fontSerif mt-5 mb-1 ">
+        <div class="fSizeHeader color-10 fontSerifMW mt-5 mb-1 ">
             <a class="cleanA titleA" href="{%url 'cms_post_list_url' %}">{{site_title}}</a>
         </div>
         <div class="fSizeSubHeader color-40 pb-2 mb-4">{{site_subtitle}}</div>
@@ -69,7 +70,6 @@
         <div id="footerTextLink" class="mb-2">
             <a class="cleanA" href="{% url 'cms_post_detail_url' 1 'about' %}">About</a><span> | </span>
             <a class="cleanA" href="{% url 'cms_post_detail_url' 2 'copyright' %}">Copyright</a><span> | </span>
-            <a class="cleanA" href="{% url 'cms_post_detail_url' 3 'term-of-use' %}">Term of Use</a><span> | </span>
             <!-- login/logout -->
             {% if user.is_authenticated %}
             <a class="cleanA" href="{% url 'cms_post_admin_url' %}">Post Admin</a><span> | </span>
@@ -82,7 +82,7 @@
             {% endif %}
             <!-- end -->
         </div>
-        <div>Developed by Shawn Lee for IS-490 IS-590 class presentation.</div>
+        <div>Developed by someone.tw with Django</div>
     </footer>
 
 </div>

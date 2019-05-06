@@ -7,14 +7,13 @@
 __pycache__
 .DS_Storev
 .idea
-production
-instance
 
 /static
 /app.yaml
 /main.py
 
 # settings-related ignore
+
 /someone_blog/settings_instance/*
 !/someone_blog/settings_instance/sample_database.py
 !/someone_blog/settings_instance/sample_site_config.py

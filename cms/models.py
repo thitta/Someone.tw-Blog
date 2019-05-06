@@ -117,7 +117,8 @@ class Post(models.Model):
     @property
     def RelatedPosts(self):
         relations = PostRelation.objects.filter(FromPost=self.PostId, Ratio__gte=0.35).order_by("-Ratio")[:3]
-        result = [v.ToPost for v in relations if self.IsOnList == v.ToPost.IsOnList]
+        result = [relation.ToPost for relation in relations
+                  if self.IsOnList == relation.ToPost.IsOnList and relation.ToPost.IsPublic is True]
         return result
 
 

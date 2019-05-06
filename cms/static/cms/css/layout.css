@@ -1,6 +1,11 @@
 body {
     background-image: url('/static/cms/img/bg.png');
-    font-family: Sans-serif	;
+    font-family: Sans-serif;
+    font-size: 100%;
+    text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
 }
 
 footer {
@@ -35,14 +40,13 @@ footer {
 
 @media only screen and (min-width: 1024px) {
     #mainContainer {
-        width: 100%;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
     }
 
     #left {
-        flex: 1 1 500px;
+        flex: 1 1 400px;
         margin-right: 25px;
     }
 
@@ -112,7 +116,7 @@ code {
 
 #coverImage {
     display: inline-block;
-    max-height: 300px;
+    max-height: 280px;
     max-width: 100%;
 }
 
@@ -122,6 +126,6 @@ code {
     text-align: center;
 }
 
-#postForm input, textarea{
+#postForm input, textarea {
     font-family: Inconsolata, monospace;
 }
