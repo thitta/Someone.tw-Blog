@@ -73,12 +73,18 @@
     display: block;
 }
 
-code{
+#postBox code {
     padding: 0.2em 0.3em;
     background-color: #f2f2f2;
 }
 
-pre code{
+#postBox pre code {
     background-color: inherit;
     color: black;
+}
+
+#postDetail #coverImage {
+    display: inline-block;
+    max-height: 440px;
+    max-width: 100%;
 }

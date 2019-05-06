@@ -11,6 +11,7 @@ __pycache__
 /static
 /app.yaml
 /main.py
+/scripts.txt
 
 # settings-related ignore
 

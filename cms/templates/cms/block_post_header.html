@@ -20,3 +20,9 @@
     {% endif %}
 </div>
 
+{% if post.CoverImageUrl != "" %}
+<div class="pt-4"></div>
+<div class="bg-0 text-center">
+    <img id="coverImage" src="{{post.CoverImageUrl}}" />
+</div>
+{% endif %}

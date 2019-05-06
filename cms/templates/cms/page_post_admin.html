@@ -38,3 +38,8 @@
 {% include 'cms/block_pagination.html' %}
 
 {% endblock %}
+
+{% block sidebar %}
+<div class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_search.html' %}</div>
+<div class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_collection.html' %}</div>
+{% endblock %}
