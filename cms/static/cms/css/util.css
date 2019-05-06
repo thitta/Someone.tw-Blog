@@ -26,6 +26,14 @@
     font-size: 1.2em;
 }
 
+.fSize-13 {
+    font-size: 1.3em;
+}
+
+.fSize-14 {
+    font-size: 1.4em;
+}
+
 .fSize-20 {
     font-size: 2.0em;
 }
@@ -50,12 +58,12 @@
     font-size: 1.3em;
 }
 
-.fontSerif {
+.fontSerifMW {
     font-family: 'Merriweather', Serif;
 }
 
-.fontMono{
-    font-family: 'Inconsolata', Monospace;
+.fontSerif {
+    font-family: Serif;
 }
 
 .color-0 {
@@ -206,6 +214,6 @@
 !important
 }
 
-.vAlignTop{
+.vAlignTop {
     vertical-align: top;
 }
