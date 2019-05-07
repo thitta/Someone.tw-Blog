@@ -12,7 +12,7 @@
       <div class="modal-body p-0">
         <article class="bg-100">
             {% include 'cms/block_post_header.html' %}
-            <div id="bodyHtml" class="p-4">
+            <div id="postHtml" class="p-4">
                 {{post.BodyHTML|safe}}
             </div>
         </article>
@@ -33,17 +33,18 @@ function toggleModal(){
     let subtitle = $("#id_Subtitle").val();
     let coverImgUrl = $("#id_CoverImageUrl").val();
     let bodyHtml = (new showdown.Converter()).makeHtml($("#id_BodyMarkdown").val());
-
     // update data
     $("#title").html(title);
     $("#subtitle").html(subtitle);
-    $("#bodyHtml").html(bodyHtml);
+    $("#postHtml").html(bodyHtml);
+    // update cover image
     if(coverImgUrl===""){
         $("#coverImageWrapper").hide();
     }else {
         $("#coverImage").attr("src",coverImgUrl);
         $("#coverImageWrapper").removeClass("d-none").show();
     }
+    // highlifgt code
     document.querySelectorAll('pre code').forEach((block) => {
         hljs.highlightBlock(block);
     });
@@ -53,6 +54,7 @@ $("#previewBtn").click(function(){
     toggleModal();
 })
 
+// listener: keyboard Shortcut
 jQuery(document).keydown(function(event) {
         if((event.ctrlKey || event.metaKey) && event.which == 16) {
             // Save Function

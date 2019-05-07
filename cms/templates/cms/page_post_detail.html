@@ -8,7 +8,7 @@
 
 <article id="postDetail" class="bg-100">
     {% include 'cms/block_post_header.html' %}
-    <div id="postBox" class="p-4">
+    <div id="postHtml" class="p-4">
         {{post.BodyHTML|safe}}
     </div>
     {% include 'cms/plugin_fb_like.html' %}
