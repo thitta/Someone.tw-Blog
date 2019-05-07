@@ -14,7 +14,7 @@
 <form id="postForm" action="{{ post.UpdateUrl }}" method="post" novalidate>
     {% csrf_token %}
     {% include 'cms/block_post_form.html' %}
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Update Post</button>
+    <button type="submit" class="btn btn-primary btn-block">Update Post</button>
 </form>
 
 <div class="py-4"></div>
@@ -26,5 +26,13 @@
 {% endblock %}
 
 {% block sidebar %}
-    123
+    <div id="writingSupporter" class="bg-100 mb-3 p-3 overflow-hidden">
+        {% include 'cms/block_statistics.html' %}
+        <div class="space p-1"></div>
+        {% include 'cms/block_button_preview.html' %}
+        <div class="space p-1"></div>
+        {% include 'cms/block_button_save.html' %}
+        <div class="space p-1"></div>
+        {% include 'cms/block_button_submit_post.html' %}
+    </div>
 {% endblock %}

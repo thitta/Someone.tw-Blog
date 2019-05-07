@@ -1,4 +1,4 @@
-from django.forms import CharField, Form, ModelForm, \
+from django.forms import CharField, Form, ModelForm, HiddenInput, \
     Textarea, TextInput, CheckboxInput, PasswordInput
 
 from .models import Post
@@ -7,7 +7,8 @@ from .models import Post
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ["Title", "Subtitle", "BodyMarkdown", "CoverImageUrl", "IsPublic", "IsOnList", "IsTop", "RankingIndex"]
+        fields = ["Title", "Subtitle", "BodyMarkdown", "CoverImageUrl",
+                  "IsPublic", "IsOnList", "IsTop", "RankingIndex", ]
         widgets = {
             "Title": TextInput(attrs={"class": "form-control", "placeholder": "*Title"}),
             "Subtitle": TextInput(attrs={"class": "form-control", "placeholder": "*Subtitle"}),

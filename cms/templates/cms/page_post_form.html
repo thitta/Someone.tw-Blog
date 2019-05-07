@@ -16,5 +16,12 @@
 {% endblock %}
 
 {% block sidebar %}
-    123
+    <div id="writingSupporter" class="bg-100 mb-3 p-4 overflow-hidden">
+        {% include 'cms/block_statistics.html' %}
+        <div class="space p-1"></div>
+        {% include 'cms/block_button_preview.html' %}
+        <div class="space p-1"></div>
+        {% include 'cms/block_button_submit_post.html' %}
+    </div>
 {% endblock %}
+

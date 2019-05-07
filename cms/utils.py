@@ -1,5 +1,3 @@
-import markdown
-from markdown.extensions.extra import ExtraExtension
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.contrib.auth.mixins import AccessMixin

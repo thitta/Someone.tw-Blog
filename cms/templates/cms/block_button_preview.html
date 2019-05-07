@@ -1,0 +1,65 @@
+<!-- button -->
+<button id="previewBtn" type="submit" class="btn btn-outline-secondary btn-block">
+    <div>Preview</div>
+    <div class="fSize-08 color-60">Command+Shift</div>
+</button>
+
+<!-- modal(display none by default) -->
+<div class="modal fade " id="postPreviewModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="max-width: 770px">
+      <div class="modal-body p-0">
+        <article class="bg-100">
+            {% include 'cms/block_post_header.html' %}
+            <div id="bodyHtml" class="p-4">
+                {{post.BodyHTML|safe}}
+            </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.js"></script>
+
+<script>
+
+function toggleModal(){
+    $("#editLink").removeClass("d-block").addClass("d-none");
+    $('#postPreviewModal').modal('toggle');
+    // get data
+    let title = $("#id_Title").val();
+    let subtitle = $("#id_Subtitle").val();
+    let coverImgUrl = $("#id_CoverImageUrl").val();
+    let bodyHtml = (new showdown.Converter()).makeHtml($("#id_BodyMarkdown").val());
+
+    // update data
+    $("#title").html(title);
+    $("#subtitle").html(subtitle);
+    $("#bodyHtml").html(bodyHtml);
+    if(coverImgUrl===""){
+        $("#coverImageWrapper").hide();
+    }else {
+        $("#coverImage").attr("src",coverImgUrl);
+        $("#coverImageWrapper").removeClass("d-none").show();
+    }
+    document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+    });
+}
+
+$("#previewBtn").click(function(){
+    toggleModal();
+})
+
+jQuery(document).keydown(function(event) {
+        if((event.ctrlKey || event.metaKey) && event.which == 16) {
+            // Save Function
+            event.preventDefault();
+            toggleModal();
+        }
+    }
+);
+
+</script>

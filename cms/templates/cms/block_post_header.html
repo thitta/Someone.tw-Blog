@@ -1,9 +1,9 @@
 <h4 class="px-4 pt-4 pb-2 color-40 fontSerif fSize-14 m-0">
-    <a class="cleanA titleA" href="{{ post.DetailUrl }}">{{post.Title}}</a>
+    <a class="cleanA titleA" href="{{ post.DetailUrl }}"><span id="title">{{post.Title}}</span></a>
 </h4>
 
 <div class="px-4 color-50 align-middle">
-    <i class="material-icons fSize-13 vAlignTop">subtitles</i> {{post.Subtitle}}
+    <i class="material-icons fSize-13 vAlignTop">subtitles</i> <span id="subtitle">{{post.Subtitle}}</span>
     <span class="p-2"></span>
     <i class="material-icons fSize-13 vAlignTop">access_time</i> {{post.CreateDate|date:'Y-m-d'}}
     {% if not post.IsPublic %}
@@ -20,9 +20,8 @@
     {% endif %}
 </div>
 
-{% if post.CoverImageUrl != "" %}
-<div class="pt-4"></div>
-<div class="bg-0 text-center">
+<div id="coverImageWrapper" class="bg-0 text-center mt-4
+            {% if post.CoverImageUrl == "" %}d-none{% endif %} ">
     <img id="coverImage" src="{{post.CoverImageUrl}}" />
 </div>
-{% endif %}
+

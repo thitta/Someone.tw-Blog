@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.http import Http404
+from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.views import View
 from django.views.generic.list import MultipleObjectMixin
 from django.urls import reverse
@@ -61,9 +61,11 @@ class PostCreate(LoginRequiredMixin, View):
             set_post_relations(trigger_post=post)
             return redirect(post.DetailUrl)
         else:
+            ctx = get_site_context()
+            ctx["form"] = form
             return render(request,
                           template_name="cms/page_post_form.html",
-                          context={"form": form})
+                          context=ctx)
 
 
 class PostUpdate(LoginRequiredMixin, UserIsPostOwnerMixin, View):
@@ -77,24 +79,32 @@ class PostUpdate(LoginRequiredMixin, UserIsPostOwnerMixin, View):
                       template_name="cms/page_post_form_update.html",
                       context=ctx)
 
-    def post(self, request, pk):
+    def post(self, request: HttpRequest, pk):
         post = get_object_or_404(Post, pk=pk)
         former_TitleAndSubtitle = post.TitleAndSubtitle
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.parse_and_save(user=request.user)
-            messages.add_message(request, messages.SUCCESS, f'Post has been updated.')
             # update relation table
             if former_TitleAndSubtitle != post.TitleAndSubtitle:
                 set_post_relations(trigger_post=post)
-            return redirect(post.DetailUrl)
+            # return
+            if request.is_ajax():
+                return HttpResponse("200_ok")
+            else:
+                messages.add_message(request, messages.SUCCESS, f'Post has been updated.')
+                return redirect(post.DetailUrl)
         else:
             ctx = get_site_context()
             ctx["form"] = form
-            return render(request,
-                          template_name="cms/page_post_form.html",
-                          context=ctx)
+            # return
+            if request.is_ajax():
+                return HttpResponseBadRequest()
+            else:
+                return render(request,
+                              template_name="cms/page_post_form_update.html",
+                              context=ctx)
 
 
 class PostDelete(LoginRequiredMixin, UserIsPostOwnerMixin, View):

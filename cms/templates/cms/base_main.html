@@ -82,14 +82,14 @@
 </html>
 
 <script>
+// sticky sideBar
 window.onscroll = function() {fixRight()};
 const topOffset = 245;
 const windowWidthBreakPoint = 1024;
-var rightBox = $("#right")
+let rightBox = $("#right");
 function fixRight() {
   if (window.pageYOffset > topOffset && $(window).width()>windowWidthBreakPoint) {
     rightBox.css("top",window.pageYOffset-topOffset);
-    console.log("GG")
   } else {
     rightBox.css("top",0);
   }

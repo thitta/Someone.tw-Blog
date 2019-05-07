@@ -38,32 +38,6 @@ footer {
     position: relative;
 }
 
-
-@media only screen and (min-width: 1024px) {
-    #mainContainer {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-
-    #left {
-        flex: 1 1 400px;
-        margin-right: 25px;
-    }
-
-    #right {
-        flex: 0 0 300px;
-        margin-bottom: 0px;
-    }
-
-    .sticky {
-        position: -webkit-sticky; /* Safari */
-        position: sticky;
-        top: -48px;
-        z-index: 100;
-    }
-}
-
 #container > section {
     min-height: 550px;
 }
@@ -74,7 +48,7 @@ footer {
 }
 
 #postForm textarea {
-    height: 350px;
+    height: 400px;
 }
 
 #editLink {
@@ -131,9 +105,44 @@ code {
 #fixedMessage {
     position: fixed;
     top: 0;
+    left: 0;
     text-align: center;
+    z-index: 100;
 }
 
 #postForm input, textarea {
     font-family: Inconsolata, monospace;
+}
+
+#writingSupporter{
+    display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+    #mainContainer {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    #left {
+        flex: 1 1 400px;
+        margin-right: 25px;
+    }
+
+    #right {
+        flex: 0 0 300px;
+        margin-bottom: 0px;
+    }
+
+    .sticky {
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: -48px;
+        z-index: 100;
+    }
+
+    #writingSupporter{
+        display: block;
+    }
 }

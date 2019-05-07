@@ -1,4 +1,5 @@
 import markdown
+import re
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
@@ -62,7 +63,7 @@ class Post(models.Model):
     def parse_and_save(self, user=None, user_id=None):
         # parse markdown into html
         md_extentions = [ExtraExtension()]
-        self.BodyHTML = markdown.markdown(self.BodyMarkdown, extensions=md_extentions)
+        self.BodyHTML = self._append_target_equals_blank(markdown.markdown(self.BodyMarkdown, extensions=md_extentions))
         # append user FK
         if user is not None:
             self.User = user
@@ -120,6 +121,14 @@ class Post(models.Model):
         result = [relation.ToPost for relation in relations
                   if self.IsOnList == relation.ToPost.IsOnList and relation.ToPost.IsPublic is True]
         return result
+
+    @staticmethod
+    def _append_target_equals_blank(html: str) -> str:
+        return re.sub(
+            pattern='<a .*href=".*".*>.*?</a>',
+            repl=lambda m: m.group()[:3] + 'target="_blank" ' + m.group()[3:],
+            string=html
+        )
 
 
 class SiteConfig(models.Model):

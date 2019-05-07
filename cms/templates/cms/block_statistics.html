@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row pb-1">
+        <div class="px-0">Word Count</div>
+        <div class="px-0">: <span id="wordCount"></span></div>
+    </div>
+</div>
+
+<script>
+
+function countWords(str) {
+    let matches = str.match(/[\u00ff-\uffff]|\S+/g);
+    return matches ? matches.length : 0;
+}
+
+function resetWordCount(){
+   let str = $("#id_BodyMarkdown").val();
+    $("#wordCount").html(countWords(str));
+}
+
+resetWordCount();
+setInterval(resetWordCount, 5000);
+
+</script>
+
