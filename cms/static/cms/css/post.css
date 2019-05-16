@@ -1,30 +1,37 @@
 #postHtml p:not(:last-child) {
     line-height: 1.5;
-    margin-bottom: 0.6em
+    margin-bottom: 0.7em
 }
 
 #postHtml h1 {
     font-size: 1.1em;
     margin: 2.5em 0em 1em -0.2em;
-    padding: 0.4em 0.6em;
-    background-color: #f0f4f7;
+    padding: 0.4em 0.7em;
+    background-color: #EBF2FA;
     border-left: #73ace6 4px solid;
     font-weight: inherit;
 }
 
+
 #postHtml h2, h3, h4, h5, h6 {
-    margin: 1.5em 0 0.6em 0;
+    margin: 1.5em 0 0.7em 0;
     font-size: 1em;
-    color: #000080;
+    font-weight: bolder;
+    color: #0f5499;
 }
 
 #postHtml img {
     width: 100%;
 }
 
+#postHtml strong{
+    color: #115ba6;
+    font-weight: normal;
+}
+
 #relatedPostBox .title {
     font-size: 1.2em;
-    margin: 1.5em 0 0.6em 0;
+    margin: 1.5em 0 0.7em 0;
 }
 
 #relatedPostBox ul {
@@ -66,25 +73,32 @@
 }
 
 #postHtml blockquote {
-    padding: 0 1em;
-    color: #808080;
-    border-left: 0.25em solid #e6e6e6;
-    margin: 0 0 0.6em 0;
+    padding: 1em;
+    margin: 0 0 0.7em 0;
     display: block;
+    background-color: #f2f2f2;
 }
+
+#postHtml blockquote p:last-child {
+    margin: 0;
+}
+
+#postHtml blockquote ul {
+    margin: 0;
+}
+
 
 #postHtml code {
     padding: 0.2em 0.3em;
     background-color: #f2f2f2;
 }
 
-#postHtml pre code {
-    background-color: inherit;
-    color: black;
-}
-
 #postDetail #coverImage {
     display: inline-block;
     max-height: 440px;
     max-width: 100%;
+}
+
+#postDetail p:has(img){
+  color: red;
 }

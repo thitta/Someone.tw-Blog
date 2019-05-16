@@ -15,12 +15,6 @@
 {% for post in posts %}
 <article class="bg-100 p-0 m-0 mb-4">
     {% include 'cms/block_post_header.html' %}
-    {% if post.CoverImageUrl != "" %}
-    <div class="pt-4"></div>
-    <div class="bg-0 text-center">
-        <img id="coverImage" src="{{post.CoverImageUrl}}" />
-    </div>
-    {% endif %}
     <p class="p-4 m-0">{{ post.Abstract|striptags }}</p>
     <div class="pl-4 pb-4">
         <a class="cleanA, readmoreA" href="{{ post.DetailUrl }}">read more...</a>

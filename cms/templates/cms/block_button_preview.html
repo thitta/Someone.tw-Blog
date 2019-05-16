@@ -48,6 +48,10 @@ function toggleModal(){
     document.querySelectorAll('pre code').forEach((block) => {
         hljs.highlightBlock(block);
     });
+    // add image comment style
+    // this function should be implemented by CSS selectors
+    // while the related selectors are still in drafted stage
+    $("#postHtml p:has(img)").addClass("fSize-09 color-50");
 }
 
 $("#previewBtn").click(function(){
