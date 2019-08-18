@@ -1,10 +1,11 @@
-import markdown
 import re
+
+import markdown
 from django.conf import settings
-from django.db import models
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
+from django.db import models
+from django.urls import reverse
 from markdown.extensions.extra import ExtraExtension
 
 
@@ -132,12 +133,23 @@ class Post(models.Model):
 
 
 class SiteConfig(models.Model):
-    Name = models.CharField(max_length=32, primary_key=True)
-    CategoryName = models.CharField(max_length=32)
-    Value = models.CharField(max_length=128)
+    ConfigId = models.AutoField(primary_key=True)
+    NameSpace = models.CharField(max_length=32)
+    Key = models.CharField(max_length=32)
+    Value = models.CharField(max_length=256)
+
+    @classmethod
+    def get(cls, name_space, key):
+        return cls.objects.get(NameSpace=name_space, Key=key)
 
     def __str__(self):
-        return self.Name
+        return f"{self.NameSpace}.{self.Key}={self.Value}"
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["NameSpace", "Key"])
+        ]
+        unique_together = ("NameSpace", "Key")
 
 
 class PostRelation(models.Model):

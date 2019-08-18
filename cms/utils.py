@@ -1,12 +1,14 @@
+from collections import deque
+from difflib import SequenceMatcher
+
+from django.conf import settings
+from django.contrib.auth.mixins import AccessMixin
 from django.db import transaction, IntegrityError
 from django.db.models import Q
-from django.contrib.auth.mixins import AccessMixin
 from django.shortcuts import get_object_or_404
-from difflib import SequenceMatcher
-from django.conf import settings
-from .models import Post, PostRelation, Collection
+
 from .forms import LoginForm
-from collections import deque
+from .models import Post, PostRelation, Collection, SiteConfig
 
 
 class UserIsPostOwnerMixin(AccessMixin):
@@ -71,6 +73,8 @@ def get_site_context():
         "nav_buttons": settings.NAV_BUTTONS,
         "site_title": settings.SITE_TITLE,
         "site_subtitle": settings.SITE_SUBTITLE,
-        "plugins": settings.PLUGINS
+        "plugins": settings.PLUGINS,
+        "author_name": SiteConfig.get(name_space="author", key="name").Value,
+        "author_description": SiteConfig.get(name_space="author", key="description").Value,
     }
     return context

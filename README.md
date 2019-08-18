@@ -1,4 +1,4 @@
-`Someone Blog` is a personal blog project built with Django. You can visit the [Demo Site](https://someone-blog.appspot.com/) to take look!
+`Someone Blog` is a personal blog project built with Django. You can visit the [Demo Site](https://blog.someone.tw/) to take look!
 
 # Features
 
