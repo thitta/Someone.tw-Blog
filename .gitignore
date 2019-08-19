@@ -5,13 +5,14 @@
 *production*
 
 __pycache__
-.DS_Storev
+.DS_Store
 .idea
 
 /static
 /app.yaml
 /main.py
 /scripts.txt
+/bash_scripts
 
 # settings-related ignore
 
