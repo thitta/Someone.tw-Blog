@@ -7,6 +7,7 @@ from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
+from utility import WidgetConfig, SomeoneUtility
 from .forms import LoginForm
 from .models import Post, PostRelation, Collection, SiteConfig
 
@@ -66,15 +67,33 @@ def get_related_ratio(text1: str, text2: str) -> float:
     return round(SequenceMatcher(None, text1, text2).quick_ratio(), 4)
 
 
-def get_site_context():
+def get_general_context():
+    # static: reboot required if values are changed
     context = {
-        "login_form": LoginForm(),
-        "collections": Collection.objects.filter(IsPublic=True).order_by("-RankingIndex")[:16],
         "nav_buttons": settings.NAV_BUTTONS,
         "site_title": settings.SITE_TITLE,
         "site_subtitle": settings.SITE_SUBTITLE,
-        "plugins": settings.PLUGINS,
-        "author_name": SiteConfig.get(name_space="author", key="name").Value,
-        "author_description": SiteConfig.get(name_space="author", key="description").Value,
+        "plugins": settings.PLUGINS
     }
+    # dynamic: reboot none required if values are changed
+    context["login_form"] = LoginForm()
+    context["collections"] = Collection.objects.filter(IsPublic=True).order_by("-RankingIndex")[:16]
+    context["author_widget"]: AuthorWidget = AuthorWidget.from_dict(
+        dct=SiteConfig.parse_name_space_to_dict(name_space="author"))
+    # return
     return context
+
+
+class AuthorWidget(WidgetConfig):
+    enable: bool = True
+    name: str = "John Smith"
+    description: str = "This is some description text about the author, you can change it in the database/SiteConfig."
+    image_url: str = "https://placeimg.com/180/180/animals"
+    url: str = ""
+
+    @classmethod
+    def from_dict(cls, dct: dict):
+        instance = cls()
+        instance.update_prop_by_dict(dct)
+        instance.enable = SomeoneUtility.to_bool(instance.enable)
+        return instance

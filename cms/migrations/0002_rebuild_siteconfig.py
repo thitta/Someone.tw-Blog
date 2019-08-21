@@ -1,31 +1,26 @@
 from django.db import migrations, models
 
-# -------------------- Add mock config --------------------
+from ..utils import AuthorWidget
 
-SITE_CONFIGS = [
-    {
-        "NameSpace": "author",
-        "Key": "name",
-        "Value": "John Smith"
-    },
-    {
-        "NameSpace": "author",
-        "Key": "description",
-        "Value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-    }
+DEFAULT_ROWS = [  # (namespace, key, value)
+    ("author", "enable", AuthorWidget.enable),
+    ("author", "name", AuthorWidget.name),
+    ("author", "image_url", AuthorWidget.image_url),
+    ("author", "url", AuthorWidget.url),
+    ("author", "description", AuthorWidget.description),
 ]
 
 
-def add_config_data(apps, schema_editor):
+def add_default_rows(apps, schema_editor):
     SiteConfig = apps.get_model('cms', 'SiteConfig')
-    for cfg in SITE_CONFIGS:
-        SiteConfig.objects.create(**cfg)
+    for cfg in DEFAULT_ROWS:
+        SiteConfig.objects.create(NameSpace=cfg[0], Key=cfg[1], Value=cfg[2])
 
 
-def remove_config_data(apps, schema_editor):
+def remove_default_rows(apps, schema_editor):
     SiteConfig = apps.get_model('cms', 'SiteConfig')
-    for cfg in SITE_CONFIGS:
-        SiteConfig.objects.filter(NameSpace=cfg["NameSpace"], Key=cfg["Key"], Value=cfg["Value"]).delete()
+    for cfg in DEFAULT_ROWS:
+        SiteConfig.objects.filter(NameSpace=cfg[0], Key=cfg[1], Value=cfg[2]).delete()
 
 
 # -------------------- Migrations --------------------
@@ -57,5 +52,5 @@ class Migration(migrations.Migration):
             unique_together={('NameSpace', 'Key')},
         ),
         # add mock data
-        migrations.RunPython(add_config_data, remove_config_data),
+        migrations.RunPython(add_default_rows, remove_default_rows),
     ]

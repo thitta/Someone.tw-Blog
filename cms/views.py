@@ -1,15 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.views import View
 from django.views.generic.list import MultipleObjectMixin
-from django.urls import reverse
 
-from .utils import UserIsPostOwnerMixin, set_post_relations, get_site_context
 from .forms import PostForm
-
 from .models import Post, Collection
+from .utils import UserIsPostOwnerMixin, set_post_relations, get_general_context
 
 
 class PostList(View, MultipleObjectMixin):
@@ -19,7 +18,7 @@ class PostList(View, MultipleObjectMixin):
     url_pattern = "cms_post_list_url"
 
     def get(self, request):
-        ctx = get_site_context()
+        ctx = get_general_context()
         ctx.update(super().get_context_data(pagination_base_url=reverse(self.url_pattern)))
         return render(request,
                       template_name="cms/page_post_list.html",
@@ -29,7 +28,7 @@ class PostList(View, MultipleObjectMixin):
 class PostDetail(View):
 
     def get(self, request, pk, title=""):
-        ctx = get_site_context()
+        ctx = get_general_context()
         ctx["post"] = get_object_or_404(Post, pk=pk)
         if ctx["post"].IsPublic is True:
             pass
@@ -46,7 +45,7 @@ class PostDetail(View):
 class PostCreate(LoginRequiredMixin, View):
 
     def get(self, request):
-        ctx = get_site_context()
+        ctx = get_general_context()
         ctx["form"] = PostForm()
         return render(request,
                       template_name="cms/page_post_form.html",
@@ -61,7 +60,7 @@ class PostCreate(LoginRequiredMixin, View):
             set_post_relations(trigger_post=post)
             return redirect(post.DetailUrl)
         else:
-            ctx = get_site_context()
+            ctx = get_general_context()
             ctx["form"] = form
             return render(request,
                           template_name="cms/page_post_form.html",
@@ -72,7 +71,7 @@ class PostUpdate(LoginRequiredMixin, UserIsPostOwnerMixin, View):
 
     def get(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
-        ctx = get_site_context()
+        ctx = get_general_context()
         ctx["post"] = post
         ctx["form"] = PostForm(instance=post)
         return render(request,
@@ -96,7 +95,7 @@ class PostUpdate(LoginRequiredMixin, UserIsPostOwnerMixin, View):
                 messages.add_message(request, messages.SUCCESS, f'Post has been updated.')
                 return redirect(post.DetailUrl)
         else:
-            ctx = get_site_context()
+            ctx = get_general_context()
             ctx["form"] = form
             # return
             if request.is_ajax():
@@ -125,7 +124,7 @@ class CollectionDetail(View, MultipleObjectMixin):
     def get(self, request, pk, title):
         collection = get_object_or_404(Collection, pk=pk)
         self.object_list = collection.get_public_posts()
-        ctx = get_site_context()
+        ctx = get_general_context()
         ctx.update(super().get_context_data(pagination_base_url=
                                             reverse(self.url_pattern, kwargs={"pk": pk, "title": title})))
         ctx["collection"] = collection
@@ -148,7 +147,7 @@ class SearchList(View, MultipleObjectMixin):
 
     def get(self, request, term):
         self.object_list = Post.get_searched_posts(term)
-        ctx = get_site_context()
+        ctx = get_general_context()
         ctx.update(super().get_context_data(pagination_base_url=reverse(self.url_pattern, kwargs={"term": term})))
         return render(request,
                       template_name="cms/page_post_list.html",
@@ -163,7 +162,7 @@ class PostAdmin(LoginRequiredMixin, View, MultipleObjectMixin):
 
     def get(self, request):
         self.object_list = Post.objects.filter(User=request.user).order_by("IsPublic", "IsOnList", "Title")
-        ctx = get_site_context()
+        ctx = get_general_context()
         messages.add_message(request, messages.WARNING, f"This page can only be seen by you.")
         ctx.update(super().get_context_data(pagination_base_url=reverse(self.url_pattern)))
         return render(request,

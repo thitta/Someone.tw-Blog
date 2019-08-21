@@ -35,7 +35,9 @@
 
 {% block sidebar %}
 <div id="sidebar">
-    <div id="authorBox" class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_author.html' %}</div>
+    {% if author_widget.enable %}
+        <div id="authorBox" class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_author.html' %}</div>
+    {% endif %}
     <div id="searchBox" class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_search.html' %}</div>
     <div id="collectionBox" class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_collection.html' %}</div>
 </div>

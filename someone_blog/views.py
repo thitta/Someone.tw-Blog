@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse, redirect
 from .forms import LoginForm
-from cms.utils import get_site_context
+from cms.utils import get_general_context
 
 
 class Login(View):
@@ -40,12 +40,12 @@ class Logout(View):
 def handler404(request, exception=None):
     ctx = dict()
     ctx["status"] = 404
-    ctx = get_site_context()
+    ctx = get_general_context()
     return render(request, 'cms/page_404.html', context=ctx, status=404)
 
 
 def handler500(request):
     ctx = dict()
     ctx["status"] = 500
-    ctx = get_site_context()
+    ctx = get_general_context()
     return render(request, 'cms/page_500.html', context=ctx, status=500)

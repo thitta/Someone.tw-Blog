@@ -1,7 +1,9 @@
 <div class="px-3 py-4">
-    <div class="authorPic bg-10 mx-auto mb-3"></div>
-    <div class="fontSerifMW color-30 fSize-12 text-center mb-2">
-        <a href="/post/1/about" class="cleanA titleA">{{author_name}}</a>
+    <div class="authorPic bg-10 mx-auto mb-3"
+         style="background-image: url({{author_widget.image_url}})">
     </div>
-    <div class="authorDescription">{{author_description}}</div>
+    <div class="fontSerifMW color-30 fSize-12 text-center mb-2">
+        <a href="{{author_widget.url}}" class="cleanA titleA">{{author_widget.name}}</a>
+    </div>
+    <div class="authorDescription">{{author_widget.description}}</div>
 </div>

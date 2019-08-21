@@ -139,8 +139,15 @@ class SiteConfig(models.Model):
     Value = models.CharField(max_length=256)
 
     @classmethod
-    def get(cls, name_space, key):
-        return cls.objects.get(NameSpace=name_space, Key=key)
+    def parse_name_space_to_dict(cls, name_space: str) -> dict:
+        result = dict()
+        for row in cls.objects.filter(NameSpace=name_space):
+            result[row.Key] = row.Value
+        return result
+
+    @classmethod
+    def get_value(cls, name_space, key):
+        return cls.objects.get(NameSpace=name_space, Key=key).Value
 
     def __str__(self):
         return f"{self.NameSpace}.{self.Key}={self.Value}"

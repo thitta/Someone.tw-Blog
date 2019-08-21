@@ -55,7 +55,6 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-image: url('/static/cms/img/author.jpg');
     background-size: contain;
 }
 
