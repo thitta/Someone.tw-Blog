@@ -1,10 +1,11 @@
 <div class="p-3
-            {% if request.GET.term %}activeBlock{% endif %}
+            {% if '/search/' in request.path %}activeBlock{% endif %}
             ">
     <div class="fontSizeL color-50 fontSerifMW fSize-11 mb-2">Full-text Search</div>
     <form id="searchForm" class="mb-2" method="get" action = "{% url 'cms_search_redirect_url'%} ">
         <div class="input-group">
-            <input name="term" type="text" class="form-control" value="{{request.GET.term}}">
+            <input type="hidden" name="source_page" value="{{ request.path }}">
+            <input name="term" type="text" class="form-control" value="{{term}}">
             <div class="input-group-append">
               <div id="searchBtn" class="input-group-text" onclick="document.getElementById('searchForm').submit()">
                 <i class="material-icons">search</i>

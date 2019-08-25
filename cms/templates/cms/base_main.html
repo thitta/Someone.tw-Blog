@@ -43,9 +43,13 @@
 
     <header class="text-center">
         <div class="fSizeHeader color-10 fontSerifMW mt-5 mb-1 ">
-            <a class="cleanA titleA" href="{%url 'cms_post_list_url' %}">{{site_title}}</a>
+            <a class="cleanA titleA" href="{%url 'cms_post_list_url' %}">
+                {{general_cfg.SiteConfig.title}}
+            </a>
         </div>
-        <div class="fSizeSubHeader color-40 pb-2 mb-4">{{site_subtitle}}</div>
+        <div class="fSizeSubHeader color-40 pb-2 mb-4">
+            {{general_cfg.SiteConfig.subtitle}}
+        </div>
     </header>
 
     <section class="bg-92">

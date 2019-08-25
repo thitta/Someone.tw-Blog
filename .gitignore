@@ -13,6 +13,8 @@ __pycache__
 /main.py
 /scripts.txt
 /bash_scripts
+/config_module/general_cfg.py
+/config_module/plugins_cfg.py
 
 # settings-related ignore
 

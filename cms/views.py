@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest
+from django.http import Http404, HttpRequest, HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views import View
@@ -136,7 +136,11 @@ class CollectionDetail(View, MultipleObjectMixin):
 class SearchRedirect(View):
 
     def get(self, request):
-        return redirect("cms_search_list_url", term=request.GET["term"])
+        term = request.GET["term"]
+        if len(term) == 0:
+            source_page = request.GET.get('source_page', '/')
+            return HttpResponseRedirect(source_page)
+        return redirect("cms_search_list_url", term=term)
 
 
 class SearchList(View, MultipleObjectMixin):
@@ -149,6 +153,7 @@ class SearchList(View, MultipleObjectMixin):
         self.object_list = Post.get_searched_posts(term)
         ctx = get_general_context()
         ctx.update(super().get_context_data(pagination_base_url=reverse(self.url_pattern, kwargs={"term": term})))
+        ctx["term"] = term
         return render(request,
                       template_name="cms/page_post_list.html",
                       context=ctx)

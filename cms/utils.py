@@ -1,15 +1,14 @@
 from collections import deque
 from difflib import SequenceMatcher
 
-from django.conf import settings
 from django.contrib.auth.mixins import AccessMixin
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from utility import WidgetConfig, SomeoneUtility
+from config_module import general_cfg, plugins_cfg
 from .forms import LoginForm
-from .models import Post, PostRelation, Collection, SiteConfig
+from .models import Post, PostRelation, Collection
 
 
 class UserIsPostOwnerMixin(AccessMixin):
@@ -41,8 +40,7 @@ def reset_post_relations():
 
 
 def set_post_relations(trigger_post) -> None:
-    """ algorithm for computing and updating relation ratio
-    the operation_type should be 'create', 'update' or 'delete'"""
+    """algorithm for computing and updating relation ratio"""
     # compute
     post_relations = []
     to_posts = Post.objects.exclude(PostId=trigger_post.PostId)
@@ -70,30 +68,11 @@ def get_related_ratio(text1: str, text2: str) -> float:
 def get_general_context():
     # static: reboot required if values are changed
     context = {
-        "nav_buttons": settings.NAV_BUTTONS,
-        "site_title": settings.SITE_TITLE,
-        "site_subtitle": settings.SITE_SUBTITLE,
-        "plugins": settings.PLUGINS
+        "general_cfg": general_cfg,
+        "plugins_cfg": plugins_cfg,
     }
-    # dynamic: reboot none required if values are changed
+    # dynamic: reboot none-required if values are changed
     context["login_form"] = LoginForm()
     context["collections"] = Collection.objects.filter(IsPublic=True).order_by("-RankingIndex")[:16]
-    context["author_widget"]: AuthorWidget = AuthorWidget.from_dict(
-        dct=SiteConfig.parse_name_space_to_dict(name_space="author"))
     # return
     return context
-
-
-class AuthorWidget(WidgetConfig):
-    enable: bool = True
-    name: str = "John Smith"
-    description: str = "This is some description text about the author, you can change it in the database/SiteConfig."
-    image_url: str = "https://placeimg.com/180/180/animals"
-    url: str = ""
-
-    @classmethod
-    def from_dict(cls, dct: dict):
-        instance = cls()
-        instance.update_prop_by_dict(dct)
-        instance.enable = SomeoneUtility.to_bool(instance.enable)
-        return instance

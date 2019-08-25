@@ -8,6 +8,8 @@ from django.db import models
 from django.urls import reverse
 from markdown.extensions.extra import ExtraExtension
 
+from someone_blog.settings import DATABASES
+
 
 class Profile(models.Model):
     User = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
@@ -63,8 +65,8 @@ class Post(models.Model):
 
     def parse_and_save(self, user=None, user_id=None):
         # parse markdown into html
-        md_extentions = [ExtraExtension()]
-        self.BodyHTML = self._append_target_equals_blank(markdown.markdown(self.BodyMarkdown, extensions=md_extentions))
+        md_extensions = [ExtraExtension()]
+        self.BodyHTML = self._append_target_equals_blank(markdown.markdown(self.BodyMarkdown, extensions=md_extensions))
         # append user FK
         if user is not None:
             self.User = user
@@ -81,10 +83,16 @@ class Post(models.Model):
 
     @classmethod
     def get_searched_posts(cls, text):
-        vector = SearchVector('Title', 'Subtitle', 'BodyMarkdown')
-        query = SearchQuery(text)
-        posts = cls.objects.annotate(rank=SearchRank(vector, query)). \
-            filter(IsPublic=True, rank__gte=0.02).order_by('-rank')
+        # postgres: full text search
+        if DATABASES["default"]["ENGINE"] == "django.db.backends.postgresql":
+            vector = SearchVector('Title', 'Subtitle', 'BodyMarkdown')
+            query = SearchQuery(text)
+            posts = cls.objects.annotate(rank=SearchRank(vector, query)). \
+                filter(IsPublic=True, rank__gte=0.02).order_by('-rank')
+            return posts
+        # others: basic implements
+        posts = [p for p in Post.objects.filter(IsPublic=True)
+                 if text.lower() in p.Title.lower() + p.Subtitle.lower()]
         return posts
 
     @property
@@ -130,33 +138,6 @@ class Post(models.Model):
             repl=lambda m: m.group()[:3] + 'target="_blank" ' + m.group()[3:],
             string=html
         )
-
-
-class SiteConfig(models.Model):
-    ConfigId = models.AutoField(primary_key=True)
-    NameSpace = models.CharField(max_length=32)
-    Key = models.CharField(max_length=32)
-    Value = models.CharField(max_length=256)
-
-    @classmethod
-    def parse_name_space_to_dict(cls, name_space: str) -> dict:
-        result = dict()
-        for row in cls.objects.filter(NameSpace=name_space):
-            result[row.Key] = row.Value
-        return result
-
-    @classmethod
-    def get_value(cls, name_space, key):
-        return cls.objects.get(NameSpace=name_space, Key=key).Value
-
-    def __str__(self):
-        return f"{self.NameSpace}.{self.Key}={self.Value}"
-
-    class Meta:
-        indexes = [
-            models.Index(fields=["NameSpace", "Key"])
-        ]
-        unique_together = ("NameSpace", "Key")
 
 
 class PostRelation(models.Model):
