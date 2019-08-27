@@ -1,0 +1,15 @@
+<script> // sticky sideBar
+const rightBox = $("#right");
+const offset = $("#writingSupporter").offset().top-20;
+
+function fixRight() {
+  if (window.pageYOffset > offset) {
+    rightBox.css("top",window.pageYOffset-offset);
+  } else {
+    rightBox.css("top",0);
+  }
+}
+
+window.onscroll = function() {fixRight()};
+
+</script>
