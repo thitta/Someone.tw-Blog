@@ -1,8 +1,7 @@
-{% load staticfiles %}
-
 <div id="editorButtons" class="bg-88" style="margin-bottom: -5px">
     <ul class="px-0 py-2 m-0">
-        <li data-value-template="![pic]({% static '___' %})" data-def-value="filename" data-insert-type="block">
+        <li data-value-template="![pic]('{{general_cfg.SiteConfig.image_host}}___')"
+            data-def-value="filename" data-insert-type="block">
             [image]
         </li>
 

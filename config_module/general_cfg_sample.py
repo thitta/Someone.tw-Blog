@@ -12,3 +12,4 @@ class SiteConfig:
         Button(text="About", url="/post/1/about", target="_self"),
         Button(text="Copyright", url="/post/2/copyright", target="_self"),
     )
+    image_host = "http://[mydomain]/[directory]/"
