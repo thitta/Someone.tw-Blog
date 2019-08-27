@@ -1,0 +1,62 @@
+{% load staticfiles %}
+
+<div id="editorButtons" class="bg-88" style="margin-bottom: -5px">
+    <ul class="px-0 py-2 m-0">
+        <li data-value-template="![pic]({% static '___' %})" data-def-value="filename" data-insert-type="block">
+            [image]
+        </li>
+
+        <li data-value-template="[link](___)" data-def-value="url" data-insert-type="inline">
+            [link]
+        </li>
+
+        <li data-value-template="```___```" data-def-value="code" data-insert-type="block">
+            [code]
+        </li>
+    </ul>
+</div>
+
+<script>
+    $("#editorButtons li").on('click', function() {
+        // init selector
+        const textareaId = "#id_BodyMarkdown";
+        const textareaE = $(textareaId);
+        const insertType = $(this).data('insert-type');
+        // insert value
+        let cursorPos = textareaE.prop('selectionStart');
+        let cursorPosEnd = textareaE.prop('selectionEnd');
+        const text = textareaE.val();
+        let textBefore = text.substring(0,  cursorPos);
+        let textAfter  = text.substring(cursorPosEnd, text.length);
+        if(insertType==="block"){
+            textBefore=textBefore.trim();
+            textAfter=textAfter.trim();
+        }
+        cursorPos = textBefore.length;
+        const textValueTemplate = $(this).data('value-template');
+        const textDefaultVal = $(this).data('def-value');
+        const textInsert = textValueTemplate.replace("___",textDefaultVal);
+        let newline = 0;
+        if(insertType==="block"){
+            textareaE.val(textBefore + br(2) + textInsert + br(2) + textAfter);
+            newline = 2;
+        }
+        else{
+            textareaE.val(textBefore + textInsert + textAfter);
+        }
+        // stay same Y position
+        const scrollPos = textareaE.scrollTop();
+        textareaE.focus();
+        textareaE.prop("scrollTop", scrollPos);
+        // select default value
+        const selectionStart = cursorPos + textValueTemplate.split("___")[0].length;
+        const selectionEnd = selectionStart + textDefaultVal.length;
+        textareaE.prop("selectionStart", selectionStart+newline);
+        textareaE.prop("selectionEnd", selectionEnd+newline);
+    });
+
+    function br(n) {
+      return "\r\n".repeat(n);
+    }
+
+</script>

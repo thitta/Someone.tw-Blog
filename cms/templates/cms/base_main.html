@@ -78,9 +78,6 @@
 {% include 'cms/block_fixedMessage.html' %}
 {% include 'cms/block_login_modal.html' %}
 
-<!-- fix right columns -->
-
-
 </body>
 
 </html>
@@ -90,7 +87,7 @@ const rightBox = $("#right");
 const authorBox = $("#authorBox")
 
 const authorBoxOffset = authorBox.outerHeight()+authorBox.offset().top+5
-const windowWidthBreakPoint = 1024;
+const windowWidthBreakPoint = 1000;
 const stickyRightContentHeight = $("#searchBox").outerHeight()+$("#collectionBox").outerHeight()+20
 
 if(stickyRightContentHeight<window.innerHeight && $(window).width()>windowWidthBreakPoint){

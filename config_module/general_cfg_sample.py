@@ -1,3 +1,5 @@
+# trim the _sample suffix of this file to run this app
+
 import collections
 
 

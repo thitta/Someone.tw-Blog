@@ -51,6 +51,19 @@
     line-height: 1.5em;
 }
 
+#editorButtons li {
+    padding: 0 0 2px 0.5em;
+    margin: 0;
+    display: inline-block;
+    font-family: Inconsolata, monospace;
+    cursor: pointer;
+}
+
+#editorButtons li:hover {
+    font-weight: bold;
+}
+
+
 #authorBox .authorPic {
     width: 120px;
     height: 120px;
