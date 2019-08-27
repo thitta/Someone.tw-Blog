@@ -24,6 +24,7 @@ footer {
     display: block;
     padding: 0 25px;
     overflow: hidden;
+    margin-top: 32px;
 }
 
 #left {
@@ -118,7 +119,7 @@ code {
     display: none;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1000px) {
     #mainContainer {
         display: flex;
         flex-wrap: wrap;
@@ -131,7 +132,7 @@ code {
     }
 
     #right {
-        flex: 0 0 300px;
+        flex: 0 0 280px;
         margin-bottom: 0px;
     }
 
@@ -144,5 +145,12 @@ code {
 
     #writingSupporter{
         display: block;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #mainContainer {
+        padding: 0 2.5%;
+        margin-top: 2%;
     }
 }
