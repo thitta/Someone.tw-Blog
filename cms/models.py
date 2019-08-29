@@ -1,14 +1,13 @@
-import re
-
 import markdown
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
 from django.db import models
 from django.urls import reverse
-from markdown.extensions.extra import ExtraExtension
 
+from config_module import general_cfg
 from someone_blog.settings import DATABASES
+from utility import core as general_utility
 
 
 class Profile(models.Model):
@@ -64,9 +63,16 @@ class Post(models.Model):
         return cls.objects.create(**data)
 
     def parse_and_save(self, user=None, user_id=None):
-        # parse markdown into html
-        md_extensions = [ExtraExtension()]
-        self.BodyHTML = self._append_target_equals_blank(markdown.markdown(self.BodyMarkdown, extensions=md_extensions))
+        # parse markdown to html
+        html = markdown.markdown(
+            self.BodyMarkdown,
+            extensions=general_cfg.PostParsingConfig.markdown_exts
+        )
+        # apply customized html parsing
+        self.BodyHTML = general_utility.customized_html_parse(
+            html_txt=html,
+            tag_configs=general_cfg.PostParsingConfig.tag_configs
+        )
         # append user FK
         if user is not None:
             self.User = user
@@ -130,14 +136,6 @@ class Post(models.Model):
         result = [relation.ToPost for relation in relations
                   if self.IsOnList == relation.ToPost.IsOnList and relation.ToPost.IsPublic is True]
         return result
-
-    @staticmethod
-    def _append_target_equals_blank(html: str) -> str:
-        return re.sub(
-            pattern='<a .*href=".*".*>.*?</a>',
-            repl=lambda m: m.group()[:3] + 'target="_blank" ' + m.group()[3:],
-            string=html
-        )
 
 
 class PostRelation(models.Model):

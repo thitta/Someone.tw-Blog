@@ -1,14 +1,15 @@
-from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
-from cms.models import Post, Collection, PostRelation
-from .utils import reset_post_relations
+from django.test import TestCase, Client
+
+from cms.models import Post, Collection
+from cms.utils import reset_post_relations
 
 USER1 = {"username": "john", "password": "123456"}
 USER2 = {"username": "mary", "password": "123456"}
 
 
-class CmsModelTestCase(TestCase):
+class IntegrationTest(TestCase):
 
     @classmethod
     def setUpClass(cls):

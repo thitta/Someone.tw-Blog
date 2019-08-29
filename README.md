@@ -10,3 +10,10 @@
 - `Inbuilt plugin modules` -- including *Google Tag Manager*, *Facebook Sharing Meta Tags* and *Facebook Social Plugin*.
 - `SEO-friendly URL` helps blogger get more flows from search engines.
 - `Built with Django` means the source code is well-organized and elastic to modifications.
+
+# Run Test
+
+```bash
+# (activate virtual environment)
+python ./manage.py test tests/*/ --pattern="test_*.py"
+```
