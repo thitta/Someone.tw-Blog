@@ -39,7 +39,6 @@
     </ul>
 </div>
 {% endif %}
-
 <div id="fb_plugin bg-100">
     {% include 'cms/plugin_fb_comment.html' %}
 </div>
@@ -56,10 +55,13 @@
 {% endblock %}
 
 {% block sidebar %}
+
 <div id="sidebar">
     {% include 'cms/plugin_author.html' %}
     <div id="searchBox" class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_search.html' %}</div>
     <div id="collectionBox" class="bg-100 mb-3 overflow-hidden">{% include 'cms/block_collection.html' %}</div>
+    <div id="donateBox" class="mb-3">{% include 'cms/block_donate.html' %}</div>
     {% include 'cms/script_sticky_postlist.html' %}
 </div>
+
 {% endblock %}

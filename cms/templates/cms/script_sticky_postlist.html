@@ -1,10 +1,12 @@
-<script> // sticky sideBar
+<script>
 const rightBox = $("#right");
 const authorBox = $("#authorBox")
 
 const authorBoxOffset = authorBox.outerHeight()+authorBox.offset().top+5
 const windowWidthBreakPoint = 1000;
-const stickyRightContentHeight = $("#searchBox").outerHeight()+$("#collectionBox").outerHeight()+20
+const extraSpace = 20;
+const stickyBoxIds = ["#collectionBox", "#donateBox", "#searchBox"];
+const stickyRightContentHeight = stickyBoxIds.reduce((total, id) => total + $(id).outerHeight() + extraSpace, 0);
 
 if(stickyRightContentHeight<window.innerHeight && $(window).width()>windowWidthBreakPoint){
     window.onscroll = function() {fixRight()};
