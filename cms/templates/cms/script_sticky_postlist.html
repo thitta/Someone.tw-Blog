@@ -6,9 +6,9 @@ const authorBoxOffset = authorBox.outerHeight()+authorBox.offset().top+5
 const windowWidthBreakPoint = 1000;
 const extraSpace = 20;
 const stickyBoxIds = ["#collectionBox", "#donateBox", "#searchBox"];
-const stickyRightContentHeight = stickyBoxIds.reduce((total, id) => total + $(id).outerHeight() + extraSpace, 0);
+const stickyHeight = stickyBoxIds.reduce((total, id) => ($(id).length === 0) ? (total) : (total + $(id).outerHeight() + extraSpace), 0);
 
-if(stickyRightContentHeight<window.innerHeight && $(window).width()>windowWidthBreakPoint){
+if (stickyHeight < window.innerHeight && $(window).width() > windowWidthBreakPoint) {
     window.onscroll = function() {fixRight()};
 }
 
