@@ -1,7 +1,7 @@
 beautifulsoup4==4.8.0
 bs4==0.0.1
 DateTime==4.3
-Django==2.2.4
+Django==2.2.10
 Markdown==3.1
 metapost==1.0.3
 psycopg2-binary==2.8.2
