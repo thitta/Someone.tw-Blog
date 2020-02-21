@@ -6,7 +6,7 @@ from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
-from config_module import general_cfg, plugins_cfg
+from settings import general_cfg, plugins_cfg
 from .forms import LoginForm
 from .models import Post, PostRelation, Collection
 

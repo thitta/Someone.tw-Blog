@@ -1,19 +1,17 @@
-`Someone Blog` is a personal blog project built with Django. You can visit the [Demo Site](https://blog.someone.tw/) to take look!
+# Quick Start
 
-# Features
+This project use environment variables to identify which DB/Config should be used in Django.
 
-- Simple but easy to read layout.
-- Responsive, of course.
-- `Full-text search` helps users find what they want.
-- `Related posts` encourages users to read more.
-- `Github-style markdown parsing` is born for productive writing!
-- `Inbuilt plugin modules` -- including *Google Tag Manager*, *Facebook Sharing Meta Tags* and *Facebook Social Plugin*.
-- `SEO-friendly URL` helps blogger get more flows from search engines.
-- `Built with Django` means the source code is well-organized and elastic to modifications.
+* Run Using Production Settings
 
-# Run Test
+``` bash
+SOMEONE_USE_PROD_CFG="TRUE"
+SOMEONE_USE_PROD_DB="TRUE"
+```
 
-```bash
-# (activate virtual environment)
-python ./manage.py test tests/*/ --pattern="test_*.py"
+* Run Using Test Settings
+
+``` bash
+SOMEONE_USE_PROD_CFG="FALSE"
+SOMEONE_USE_PROD_DB="FALSE"
 ```

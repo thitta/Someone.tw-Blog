@@ -1,12 +1,10 @@
 import markdown
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery
 from django.db import models
 from django.urls import reverse
 
-from config_module import general_cfg
-from someone_blog.settings import DATABASES
+from settings import general_cfg
 from utility import core as general_utility
 
 
@@ -89,16 +87,9 @@ class Post(models.Model):
 
     @classmethod
     def get_searched_posts(cls, text):
-        # postgres: full text search
-        if DATABASES["default"]["ENGINE"] == "django.db.backends.postgresql":
-            vector = SearchVector('Title', 'Subtitle', 'BodyMarkdown')
-            query = SearchQuery(text)
-            posts = cls.objects.annotate(rank=SearchRank(vector, query)). \
-                filter(IsPublic=True, rank__gte=0.02).order_by('-rank')
-            return posts
-        # others: basic implements
-        posts = [p for p in Post.objects.filter(IsPublic=True)
-                 if text.lower() in p.Title.lower() + p.Subtitle.lower()]
+        # TODO: rewrite this function
+        posts = cls.objects.filter(IsPublic=True, IsOnList=True) \
+            .order_by("-IsTop", "-RankingIndex", "-CreateDate")
         return posts
 
     @property

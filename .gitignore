@@ -15,11 +15,3 @@ __pycache__
 /bash_scripts
 /config_module/general_cfg.py
 /config_module/plugins_cfg.py
-
-# settings-related ignore
-
-/someone_blog/settings_instance/*
-!/someone_blog/settings_instance/sample_database.py
-!/someone_blog/settings_instance/sample_site_config.py
-/someone_blog/*settings*.py
-!/someone_blog/settings_sample.py

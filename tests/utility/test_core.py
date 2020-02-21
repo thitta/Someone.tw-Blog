@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from config_module.general_cfg import TagConfig
+from settings.general_cfg import TagConfig
 from utility import core as general_utility
 
 

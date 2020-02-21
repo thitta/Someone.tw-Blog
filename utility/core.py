@@ -2,7 +2,7 @@ from typing import Iterable
 
 from bs4 import BeautifulSoup
 
-from config_module import general_cfg
+from settings import general_cfg
 
 
 def customized_html_parse(html_txt: str, tag_configs: Iterable["general_cfg.TagConfig"]) -> str:
