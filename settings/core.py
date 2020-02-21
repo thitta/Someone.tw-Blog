@@ -16,10 +16,10 @@ site_setting = importlib.import_module(name=".cfg_dev", package=PACKAGE)
 db_setting = importlib.import_module(name=".db_dev", package=PACKAGE)
 
 if USE_PROD_DB is True:
-    site_setting = importlib.import_module(name=".db_prod", package=PACKAGE)
+    db_setting = importlib.import_module(name=".db_prod", package=PACKAGE)
 
 if USE_PROD_CFG is True:
-    db_setting = importlib.import_module(name=".cfg_prod", package=PACKAGE)
+    site_setting = importlib.import_module(name=".cfg_prod", package=PACKAGE)
 
 # ---------- DJANGO CORE ---------
 ALLOWED_HOSTS = site_setting.ALLOWED_HOSTS
