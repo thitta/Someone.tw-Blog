@@ -8,6 +8,7 @@ __pycache__
 .DS_Store
 .idea
 
+/venv
 /static
 /app.yaml
 /main.py
