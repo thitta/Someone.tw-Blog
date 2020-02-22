@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name someone.tw www.someone.tw 128.199.149.10 localhost:8080;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/someone-admin/Someone.tw-Blog/wsgi.sock;
+    }
+}
