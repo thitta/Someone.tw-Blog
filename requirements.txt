@@ -10,3 +10,4 @@ sqlparse==0.3.0
 typing==3.6.6
 tzlocal==1.5.1
 zope.interface==4.6.0
+gunicorn==20.0.4
