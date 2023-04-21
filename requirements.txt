@@ -6,7 +6,7 @@ Markdown==3.1
 metapost==1.0.3
 psycopg2-binary==2.8.2
 pytz==2018.9
-sqlparse==0.3.0
+sqlparse==0.4.4
 typing==3.6.6
 tzlocal==1.5.1
 zope.interface==4.6.0
